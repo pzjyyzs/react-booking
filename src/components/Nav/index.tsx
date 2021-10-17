@@ -6,19 +6,19 @@ const Nav =  () => (
     <MyNav>
           <ul>
             <li>
-              <MyLink to='/tags'>
+              <MyLink to='/tags' activeClassName='selected'>
                 <MyIcon icon={FaIcons['faTag']}></MyIcon>
                 标签页
               </MyLink>
             </li>
             <li>
-              <MyLink to='/money'>
+              <MyLink to='/money' activeClassName='selected'>
                 <MyIcon icon={FaIcons['faYenSign']}></MyIcon>
                 记账页
                 </MyLink>
             </li>
             <li>
-              <MyLink to='/statistics'>
+              <MyLink to='/statistics' activeClassName='selected'>
                 <MyIcon icon={FaIcons['faChartBar']}></MyIcon>
                 统计页
               </MyLink>

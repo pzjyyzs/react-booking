@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const MyNav = styled.nav`
     border: 1px solid blue;
@@ -16,10 +16,13 @@ export const MyNav = styled.nav`
     }
 `;
 
-export const MyLink = styled(Link)`
+export const MyLink = styled(NavLink)`
     display: flex;
     flex-direction: column;
     align-items: center;
+    &.selected {
+        color: red;
+    }
 `;
 
 export const MyIcon = styled(FontAwesomeIcon)`
