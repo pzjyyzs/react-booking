@@ -32,7 +32,7 @@ export const MoneyTagStyle = styled.div`
     }
 `;
 
-export const MoneyNote = styled.div`
+export const MoneyNoteStyle = styled.div`
     padding: 0 16px;
     background: #f5f5f5;
     font-size: 14px;
@@ -46,11 +46,12 @@ export const MoneyNote = styled.div`
       height: 72px;
       background: none;
       border: none;
+      outline: none;
     }
   }
 `;
 
-export const MoneyCategory = styled.div`
+export const MoneyCategoryStyle = styled.div`
     font-size: 24px;
     > ul{
         display:flex;
@@ -74,7 +75,7 @@ export const MoneyCategory = styled.div`
     }
 `;
 
-export const MoneyNumber = styled.div`
+export const MoneyNumberStyle = styled.div`
     display:flex;
     flex-direction: column;
     > .output{

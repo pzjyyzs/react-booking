@@ -1,45 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import MoneyCategory from "./money-category";
+import MoneyNote from "./money-note";
+import MoneyNumber from "./money-number";
 import MoneyTag from "./money-tag";
-import { MoneyCategory, MoneyNote, MoneyNumber, MyLayout } from "./style-components";
+import { MyLayout } from "./style-components";
 
+type categoryType = 'pay' | 'revenue';
 const Money: React.FunctionComponent = () =>  {
+    const [selected, setSelected] = useState({
+      tags: [] as string[],
+      note: '',
+      category: 'revenue' as categoryType,
+      amount: '0'
+    })
+
+    const onChange = (obj: Partial<typeof selected>) => {
+      setSelected({ ...selected, ...obj })
+    }
+
     return (
       <MyLayout>
-        <MoneyTag></MoneyTag>
+        <MoneyTag 
+          value={selected.tags}
+          onChange={(tags) => onChange({tags})}
+        />
 
-        <MoneyNote>
-          <label>
-            <span>备注</span>
-            <input type="text" />
-          </label>
-        </MoneyNote>
+        <MoneyNote
+          value={selected.note}
+          onChange={(note) => onChange({note})}
+        />
 
-        <MoneyCategory>
-          <ul>
-            <li>支出</li>
-            <li>收入</li>
-          </ul>
-        </MoneyCategory>
+        <MoneyCategory
+          value={selected.category}
+          onChange={(category) => onChange({category})}
+        />
 
-        <MoneyNumber>
-          <div className='output'>100</div>
-          <div className='pad'>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>删除</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>清空</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button className='ok'>OK</button>
-            <button className='zero'>0</button>
-            <button>.</button>
-          </div>
-        </MoneyNumber>
+        <MoneyNumber
+          value={selected.amount}
+          onChange={(amount) => onChange({amount})}
+          onOk={() => '123'}
+        />
 
       </MyLayout>
     )

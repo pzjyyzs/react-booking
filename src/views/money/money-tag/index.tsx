@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { MoneyTagStyle } from "../style-components";
+import { useTags } from './../../../hooks/useTags';
 
-const MoneyTag: React.FC<any> = (props) => {
-    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-    const [selectedTags, setSelectedTags] = useState<string[]>([])
+type TagProps = {
+    value: string[],
+    onChange: (selected: string[]) => void;
+}
+const MoneyTag: React.FC<TagProps> = (props) => {
+    const selectedTags = props.value;
+    const { tags, setTags } = useTags();
     const onAddTag = () => {
         const x = window.prompt('新的标签为');
         if (x !== null && tags.indexOf(x) === -1) {
@@ -15,9 +20,9 @@ const MoneyTag: React.FC<any> = (props) => {
         const isSelect = selectedTags.indexOf(tag);
         if (isSelect > -1) {
             const filterArr = selectedTags.filter(item => item !== tag);
-            setSelectedTags(filterArr);
+            props.onChange(filterArr);
         } else {
-            setSelectedTags([...selectedTags, tag])
+            props.onChange([...selectedTags, tag])
         }
     }
 
