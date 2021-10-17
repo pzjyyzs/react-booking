@@ -6,6 +6,7 @@ export const MyNav = styled.nav`
     border: 1px solid blue;
     line-height: 24px;
     box-shadow: 0 0 3px rgba(0, 0, 0, .25);
+    background-color: #fff;
     > ul {
         display: flex;
         > li{

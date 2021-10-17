@@ -1,11 +1,14 @@
 import React from 'react';
 import Nav from 'components/Nav';
-import { Main, Wrapper } from './../../styled-component';
+import { Main, Wrapper } from './style-components';
 
-const Layout: React.FunctionComponent = (props) => {
+interface layoutProps {
+    className?: string;
+}
+const Layout: React.FunctionComponent<layoutProps> = (props) => {
     return (
         <Wrapper>
-            <Main>
+            <Main className={props.className}>
                 { props.children }
             </Main>
             <Nav></Nav>
