@@ -1,7 +1,7 @@
 import Layout from "components/Layout";
 import styled from "styled-components";
 
-export const MoneyTag = styled.div`
+export const MoneyTagStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -18,6 +18,9 @@ export const MoneyTag = styled.div`
             font-size: 14px;
             background: #d9d9d9;
             border-radius: 18px;
+            &.selected {
+                background: red;
+            }
         }
     }
     > button {

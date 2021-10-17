@@ -1,18 +1,11 @@
 import React from "react";
-import { MoneyCategory, MoneyNote, MoneyNumber, MoneyTag, MyLayout } from "./style-components";
+import MoneyTag from "./money-tag";
+import { MoneyCategory, MoneyNote, MoneyNumber, MyLayout } from "./style-components";
 
 const Money: React.FunctionComponent = () =>  {
     return (
       <MyLayout>
-        <MoneyTag>
-          <ol>
-            <li>衣</li>
-            <li>食</li>
-            <li>住</li>
-            <li>行</li>
-          </ol>
-          <button>新增标签</button>
-        </MoneyTag>
+        <MoneyTag></MoneyTag>
 
         <MoneyNote>
           <label>
