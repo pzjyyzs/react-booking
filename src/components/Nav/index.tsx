@@ -1,18 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MyNav } from './style-components';
+import * as FaIcons from '@fortawesome/free-solid-svg-icons';
+import { MyIcon, MyLink, MyNav } from './style-components';
 
 const Nav =  () => (
     <MyNav>
           <ul>
             <li>
-              <Link to='/tags'>标签页</Link>
+              <MyLink to='/tags'>
+                <MyIcon icon={FaIcons['faTag']}></MyIcon>
+                标签页
+              </MyLink>
             </li>
             <li>
-              <Link to='/money'>记账页</Link>
+              <MyLink to='/money'>
+                <MyIcon icon={FaIcons['faYenSign']}></MyIcon>
+                记账页
+                </MyLink>
             </li>
             <li>
-              <Link to='/statistics'>统计页</Link>
+              <MyLink to='/statistics'>
+                <MyIcon icon={FaIcons['faChartBar']}></MyIcon>
+                统计页
+              </MyLink>
             </li>
           </ul>
         </MyNav>

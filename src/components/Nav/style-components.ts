@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 export const MyNav = styled.nav`
     border: 1px solid blue;
@@ -12,4 +14,14 @@ export const MyNav = styled.nav`
             text-align: center;
         }
     }
+`;
+
+export const MyLink = styled(Link)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const MyIcon = styled(FontAwesomeIcon)`
+    font-size: 24px;
 `;
