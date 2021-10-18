@@ -1,47 +1,44 @@
-import React, { useState } from "react";
-import { MoneyTagStyle } from "../style-components";
-import { useTags } from './../../../hooks/useTags';
+import React from "react";
+import { categoryType } from "..";
+import { MoneyTagStyle, TagIcon } from "../style-components";
+import { getTags } from './../../../hooks/useTags';
 
 type TagProps = {
-    value: string[],
-    onChange: (selected: string[]) => void;
+    value: number,
+    category: categoryType,
+    onChange: (selected: number) => void;
 }
 const MoneyTag: React.FC<TagProps> = (props) => {
     const selectedTags = props.value;
-    const { tags, setTags } = useTags();
-    const onAddTag = () => {
-        const x = window.prompt('新的标签为');
-        if (x !== null && tags.indexOf(x) === -1) {
-            setTags([...tags, x])
-        }
-    }
+    const { tags } = getTags(props.category);
 
-    const onToggleTag = (tag: string) => {
-        const isSelect = selectedTags.indexOf(tag);
-        if (isSelect > -1) {
-            const filterArr = selectedTags.filter(item => item !== tag);
-            props.onChange(filterArr);
+    const onToggleTag = (tag: number) => {
+        const isSelect = selectedTags === tag;
+        if (isSelect) {
+            props.onChange(0);
         } else {
-            props.onChange([...selectedTags, tag])
+            props.onChange(tag)
         }
     }
 
     return (
         <MoneyTagStyle>
-            <ol>
+            <div>
                 {
                     tags.map(item => {
                         return (
-                            <li 
-                                key={item} 
-                                onClick={() => onToggleTag(item)}
-                                className={selectedTags.indexOf(item) > -1 ? 'selected' : ''}
-                            >{item}</li>
+                            <div 
+                                key={item.id} 
+                                onClick={() => onToggleTag(item.id)}
+                                className={selectedTags === item.id  ? 'selected' : ''}
+                            >
+                                <TagIcon icon={ item.icon }></TagIcon>
+                                {item.name}
+                            </div>
                         )
                     })
                 }
-          </ol>
-          <button onClick={onAddTag}>新增标签</button>
+          </div>
         </MoneyTagStyle>
     )
 }

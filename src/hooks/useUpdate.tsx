@@ -7,6 +7,8 @@ export const useUpdate = (fn: () => void, deps: any[]) => {
     });
 
     useEffect(() => {
-        fn()
-    }, [deps]);
+        if (count.current > 1) {
+            fn()
+        }
+    }, deps);
 }

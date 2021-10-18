@@ -11,7 +11,6 @@ const MoneyNumber: React.FC<moneyNumberProps> = (props) => {
     const output = props.value;
     const setOutput = (output: string) => {
         let value = '0' ;
-        console.log(output)
         if (output.length > 16) {
             value = output.slice(0, 16);
         } else if (output.length === 0) {
@@ -24,8 +23,9 @@ const MoneyNumber: React.FC<moneyNumberProps> = (props) => {
 
     const onClickNumber = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;
+        console.log(text)
         if ( text === null) {return;}
-        if (text === 'OK') {
+        if (text === 'ok') {
             if (props.onOk) {
                 props.onOk();
             }
@@ -40,8 +40,50 @@ const MoneyNumber: React.FC<moneyNumberProps> = (props) => {
                 { output }
             </div>
             <div className='pad clearfix' onClick={onClickNumber}>
-                <button>1</button>
-                <button>2</button>
+                <button>
+                   <i>1</i>
+                </button>
+                <button>
+                   <i>2</i>
+                </button>
+                <button>
+                   <i>3</i>
+                </button>
+                <button>
+                    <i>删除</i>
+                </button>
+                <button>
+                   <i>4</i>
+                </button>
+                <button>
+                   <i>5</i>
+                </button>
+                <button>
+                   <i>6</i>
+                </button>
+                <button>
+                    <i>清空</i>
+                </button>
+                <button>
+                   <i>7</i>
+                </button>
+                <button>
+                   <i>8</i>
+                </button>
+                <button>
+                   <i>9</i>
+                </button>
+                <button>
+                    <i>ok</i>
+                </button>
+                <button></button>
+                <button>
+                    <i>0</i>
+                </button>
+                <button>
+                    <i>.</i>
+                </button>
+                {/* <button>2</button>
                 <button>3</button>
                 <button>删除</button>
                 <button>4</button>
@@ -53,7 +95,7 @@ const MoneyNumber: React.FC<moneyNumberProps> = (props) => {
                 <button>9</button>
                 <button className='ok'>OK</button>
                 <button className='zero'>0</button>
-                <button>.</button>
+                <button>.</button> */}
             </div>
         </MoneyNumberStyle>
     )

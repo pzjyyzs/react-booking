@@ -19,7 +19,7 @@ function App() {
               <Statistics></Statistics>
             </Route>
 
-            <Redirect exact from='/' to='/money' />
+            <Redirect exact from='/' to='/tags' />
             <Route path='*'>
               <Nomatch></Nomatch>
             </Route>

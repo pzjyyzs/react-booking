@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MoneyCategoryStyle } from '../style-components';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { createHashHistory }  from 'history'; 
 
 type CategoryProps = {
     value: 'pay' | 'revenue';
@@ -15,8 +18,15 @@ const MoneyCategory: React.FC<CategoryProps> = (props) => {
         }
     }
 
+    const onPushBack = () => {
+        createHashHistory().goBack();
+    }
+
     return (
         <MoneyCategoryStyle>
+            <button onClick={onPushBack}>
+                <FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon>
+            </button>
             <ul>
                 {
                     catelist.map(cate => {

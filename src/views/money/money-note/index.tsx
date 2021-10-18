@@ -9,11 +9,11 @@ const MoneyNote: React.FC<NoteProps> = (props) => {
     return (
         <MoneyNoteStyle>
             <label>
-            <span>备注</span>
             <input 
                 type="text" 
                 value={props.value}
                 onChange={(e) => props.onChange(e.target.value)}
+                placeholder='备注'
             />
           </label>
         </MoneyNoteStyle>

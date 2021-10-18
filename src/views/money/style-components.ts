@@ -1,25 +1,32 @@
-import Layout from "components/Layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const MoneyTagStyle = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-grow: 1;
-    padding: 12px 16px;
+    margin: 0 calc(calc(25% - 64px) / 2);
+    margin-top: 10px;
     background-color: #fff;
-    > ol {
-        margin: 0 -12px;
-        > li {
-            display: inline-block;
-            margin: 8px 12px;
+    > div {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        border-radius: 10px;
+        box-shadow: 0px 0px 17px -1px rgb(132 132 132 / 15%);
+        > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 20px;
             padding: 4px 18px;
-            font-size: 14px;
-            background: #d9d9d9;
+            font-size: 16px;
             border-radius: 18px;
             &.selected {
-                background: red;
+                background: #E4BF88;
             }
         }
     }
@@ -33,9 +40,13 @@ export const MoneyTagStyle = styled.div`
 `;
 
 export const MoneyNoteStyle = styled.div`
+    margin: 0 calc(calc(25% - 64px) / 2);
+    margin-top: 10px;
     padding: 0 16px;
-    background: #f5f5f5;
+    background: #fff;
     font-size: 14px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 17px -1px rgb(132 132 132 / 15%);
   > label {
     display:flex;
     align-items: center;
@@ -43,23 +54,30 @@ export const MoneyNoteStyle = styled.div`
     > input {
       display:block;
       width: 100%;
-      height: 72px;
+      height: 55px;
       background: none;
       border: none;
       outline: none;
+      color: #d1d1d1;
+      text-align: right;
     }
   }
 `;
 
 export const MoneyCategoryStyle = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 24px;
+    background: #E4BF88;
     > ul{
         display:flex;
-        background:#c4c4c4;
+        color: #333;
         > li {
             width: 50%; 
             text-align:center;
-            padding: 16px 0;
+            padding: 16px;
             position:relative;
             &.selected::after{
                 content: '';
@@ -73,26 +91,49 @@ export const MoneyCategoryStyle = styled.div`
             }
         }
     }
+
+    > button {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        background: inherit;
+        border: none;
+        outline: none;
+        font-size: 24px;
+    }
 `;
 
 export const MoneyNumberStyle = styled.div`
     display:flex;
     flex-direction: column;
+    margin-top: 10px;
     > .output{
-        background:white;
-        font-size: 36px;
-        line-height: 72px;
-        text-align:right;
-        padding: 0 16px;
-        box-shadow: inset 0 -5px 5px -5px rgba(0,0,0,0.25),
-                    inset 0 5px 5px -5px rgba(0,0,0,0.25);
+        margin: 0 calc(calc(25% - 64px) / 2);
+        padding: 0 20px;
+        width: calc(100% - calc(25% - 64px));
+        height: 55px;
+        line-height: 55px;
+        text-align: right;
+        border-radius: 10px;
+        border: 0;
+        font-size: 20px;
+        color: #d1d1d1;
+        font-weight: 400;
+        box-shadow: 0px 0px 17px -1px rgb(132 132 132 / 15%);
+        background-color: #fff;
         }
     > .pad{ 
+        margin-top: 10px;
+        background-color: #fff;
         > button {
-            font-size: 18px; float: left; width: 25%; height: 64px; border: none;
+            margin-bottom: 25px;
+            font-size: 20px; float: left; width: 25%; height: 64px; border: none;
+            background:#fff;
+                color: #E4BF88;
             &.ok{ height: 128px; float: right; }
             &.zero{ width: 50%; }
-            &:nth-child(1){
+            /* &:nth-child(1){
                 background:#f2f2f2;
             }
             &:nth-child(2),
@@ -119,12 +160,29 @@ export const MoneyNumberStyle = styled.div`
             }
             &:nth-child(14) {
                 background:#A9A9A9;
+            } */
+
+            i {
+                display: inline-block;
+                width: 64px;
+                height:64px;
+                line-height: 64px;
+                background-color: #fff;
+                cursor: pointer;
+                border-radius: 100%;
+                transition: 250ms;
+                user-select: none;
+                box-shadow: 8px 8px 24px 0px rgb(132 132 132 / 9%);
             }
         }
     }
 `;
 
-export const MyLayout  = styled(Layout)`
+export const MyLayout  = styled.div`
     display: flex;
     flex-direction: column;
+    height: 100vh;
+`;
+
+export const TagIcon = styled(FontAwesomeIcon)`
 `;

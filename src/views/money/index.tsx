@@ -1,3 +1,4 @@
+import { useRecords } from "hooks/useRecords";
 import React, { useState } from "react";
 import MoneyCategory from "./money-category";
 import MoneyNote from "./money-note";
@@ -5,24 +6,41 @@ import MoneyNumber from "./money-number";
 import MoneyTag from "./money-tag";
 import { MyLayout } from "./style-components";
 
-type categoryType = 'pay' | 'revenue';
-const Money: React.FunctionComponent = () =>  {
-    const [selected, setSelected] = useState({
-      tags: [] as string[],
-      note: '',
-      category: 'revenue' as categoryType,
-      amount: '0'
-    })
+export type categoryType = 'pay' | 'revenue';
 
+const defaultFormData = {
+  tagIds: 1,
+  note: '',
+  category: 'pay' as categoryType,
+  amount: '0'
+}
+const Money: React.FunctionComponent = () =>  {
+    const [selected, setSelected] = useState(defaultFormData)
+
+    const {records, addRecord} = useRecords();
+    
     const onChange = (obj: Partial<typeof selected>) => {
       setSelected({ ...selected, ...obj })
     }
 
+    const submit = () => {
+      if (addRecord(selected)) {
+        alert('保存成功');
+        setSelected(defaultFormData);
+      }
+    };
+
     return (
       <MyLayout>
+         <MoneyCategory
+          value={selected.category}
+          onChange={(category) => onChange({category})}
+        />
+        
         <MoneyTag 
-          value={selected.tags}
-          onChange={(tags) => onChange({tags})}
+          value={selected.tagIds}
+          category={selected.category}
+          onChange={(tags) => onChange({tagIds: tags})}
         />
 
         <MoneyNote
@@ -30,15 +48,12 @@ const Money: React.FunctionComponent = () =>  {
           onChange={(note) => onChange({note})}
         />
 
-        <MoneyCategory
-          value={selected.category}
-          onChange={(category) => onChange({category})}
-        />
+       
 
         <MoneyNumber
           value={selected.amount}
           onChange={(amount) => onChange({amount})}
-          onOk={() => '123'}
+          onOk={submit}
         />
 
       </MyLayout>
