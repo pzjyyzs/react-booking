@@ -58,8 +58,7 @@ export const MoneyNoteStyle = styled.div`
       background: none;
       border: none;
       outline: none;
-      color: #d1d1d1;
-      text-align: right;
+      text-align: left;
     }
   }
 `;

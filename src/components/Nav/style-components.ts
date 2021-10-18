@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
 export const MyNav = styled.nav`
-    border: 1px solid blue;
     line-height: 24px;
     box-shadow: 0 0 3px rgba(0, 0, 0, .25);
     background-color: #fff;
@@ -22,7 +21,7 @@ export const MyLink = styled(NavLink)`
     flex-direction: column;
     align-items: center;
     &.selected {
-        color: red;
+        color: #E4BF88;
     }
 `;
 

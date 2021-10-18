@@ -1,7 +1,7 @@
 import React from "react";
 import { categoryType } from "..";
 import { MoneyTagStyle, TagIcon } from "../style-components";
-import { getTags } from './../../../hooks/useTags';
+import { useTags } from './../../../hooks/useTags';
 
 type TagProps = {
     value: number,
@@ -10,13 +10,11 @@ type TagProps = {
 }
 const MoneyTag: React.FC<TagProps> = (props) => {
     const selectedTags = props.value;
-    const { tags } = getTags(props.category);
-
+    const { getTag } = useTags();
+    const tags = getTag(props.category);
     const onToggleTag = (tag: number) => {
         const isSelect = selectedTags === tag;
-        if (isSelect) {
-            props.onChange(0);
-        } else {
+        if (!isSelect) {
             props.onChange(tag)
         }
     }

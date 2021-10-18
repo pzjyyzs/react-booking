@@ -8,7 +8,7 @@ const Nav =  () => (
             <li>
               <MyLink to='/tags' activeClassName='selected'>
                 <MyIcon icon={FaIcons['faTag']}></MyIcon>
-                标签页
+                本月概况
               </MyLink>
             </li>
             <li>
@@ -20,7 +20,7 @@ const Nav =  () => (
             <li>
               <MyLink to='/statistics' activeClassName='selected'>
                 <MyIcon icon={FaIcons['faChartBar']}></MyIcon>
-                统计页
+                图标页
               </MyLink>
             </li>
           </ul>
