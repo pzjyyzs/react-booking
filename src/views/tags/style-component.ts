@@ -4,6 +4,7 @@ export const TagsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: auto;
 `;
 
 export const Header = styled.header`
@@ -106,6 +107,11 @@ export const Main = styled.div`
                 font-weight: 700;
                 color: #000;
             }
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
         }
     }
 `;

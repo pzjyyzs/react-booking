@@ -23,7 +23,6 @@ const MoneyNumber: React.FC<moneyNumberProps> = (props) => {
 
     const onClickNumber = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;
-        console.log(text)
         if ( text === null) {return;}
         if (text === 'ok') {
             if (props.onOk) {

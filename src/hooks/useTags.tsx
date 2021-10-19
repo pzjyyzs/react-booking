@@ -28,7 +28,7 @@ const defaultTags = [
     { id: 15, name: '其他', icon: faEllipsisV, type: 'revenue' },
 ]
 export const useTags = () => {
-    const [tags, setTags] = useState<TagsProps[]>(defaultTags);
+    const [tags] = useState<TagsProps[]>(defaultTags);
    
     const getTag = (type: categoryType) => {
         return tags.filter(item => item.type === type);

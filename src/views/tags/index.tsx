@@ -58,7 +58,7 @@ const Tags:React.FunctionComponent = () => {
               return (
                 <Link key={item.createdAt} to={'/tags/' + item.id}>
                 <div className='tag-item'>
-                  <FontAwesomeIcon icon={ findTag(item.tagIds)!.icon}></FontAwesomeIcon>
+                  <FontAwesomeIcon className='icon' icon={ findTag(item.tagIds)!.icon}></FontAwesomeIcon>
                   <span className='tag-item-cate'>{ findTag(item.tagIds)!.name }</span>
                   <span className='tag-item-amount'>
                     <span className='price'>￥{ item.category === 'pay' ? '-' : '+'}{item.amount}</span>
