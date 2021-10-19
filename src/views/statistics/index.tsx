@@ -98,27 +98,33 @@ const Statistics: React.FunctionComponent = () => {
           
           <div ref={container} />
 
-          <StaList>
-            <div className='title'>{ type === 'pay' ? '支出' : '收入' }排行榜</div>
-            <ul>
-              {
-                tagsAmount && tagsAmount.map(item => {
-                  const tag = findTag(item.tagid);
-                  return (
-                      <li key={item.tagid}>
-                        <div>
-                          <FontAwesomeIcon className='icon' icon={tag!.icon}></FontAwesomeIcon>
-                        </div>
-                        <span>
-                            { tag?.name }
-                          </span>
-                        {item.amount}
-                      </li>
-                  )
-                })
-              }
-            </ul>
-          </StaList>
+          {
+            tagsAmount && tagsAmount.length !== 0 && (
+              <StaList>
+              <div className='title'>{ type === 'pay' ? '支出' : '收入' }排行榜</div>
+              <ul>
+                {
+                  tagsAmount && tagsAmount.map(item => {
+                    const tag = findTag(item.tagid);
+                    return (
+                        <li key={item.tagid}>
+                          <div>
+                            <FontAwesomeIcon className='icon' icon={tag!.icon}></FontAwesomeIcon>
+                          </div>
+                          <span>
+                              { tag?.name }
+                            </span>
+                          {item.amount}
+                        </li>
+                    )
+                  })
+                }
+              </ul>
+            </StaList>
+            )
+          }
+
+         
         </StaWrapper>
       </Layout>
     )
