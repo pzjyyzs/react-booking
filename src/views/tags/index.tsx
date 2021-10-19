@@ -8,11 +8,14 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { useTags } from 'hooks/useTags';
 import { Link } from 'react-router-dom';
 import day from 'dayjs';
+import { useUpdate } from 'hooks/useUpdate';
+import { useState } from 'react';
 
 const Tags:React.FunctionComponent = () => {
     const {records} = useRecords();
     const { findTag } = useTags();
-    const isEmpty = !records || records.length === 0;
+    const [isEmpty , setIsEmpty] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     const getRevenue = (type: 'revenue'| 'pay') => {
       return records
                   .filter(item => item.category === type)
@@ -21,6 +24,10 @@ const Tags:React.FunctionComponent = () => {
                   }, 0);
     }
 
+    useUpdate(() => {
+      setIsEmpty(!records || records.length === 0);
+      setLoading(false);
+    }, records)
     return (
       <Layout>
         <TagsWrapper>
@@ -45,7 +52,7 @@ const Tags:React.FunctionComponent = () => {
         </Header>
 
         <Main>
-          { isEmpty && (
+          { !isLoading && isEmpty && (
             <div className='empty'>
               <FontAwesomeIcon className='icon' icon={faExclamationCircle}></FontAwesomeIcon>
               <div>暂时还没有记录. 快去记一笔吧~</div>
@@ -54,7 +61,7 @@ const Tags:React.FunctionComponent = () => {
           }
 
           {
-            !isEmpty && records.map(item => {
+            !isLoading && !isEmpty && records.map(item => {
               return (
                 <Link key={item.createdAt} to={'/tags/' + item.id}>
                 <div className='tag-item'>
