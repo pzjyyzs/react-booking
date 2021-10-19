@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Layout from "components/Layout";
-import * as echarts from 'echarts';
+
 import { StaHeader, StaList, StaWrapper } from "./style-component";
 import { useRecords } from "hooks/useRecords";
 import { useTags } from "hooks/useTags";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BarChart from "./bar-chart";
 
 const Statistics: React.FunctionComponent = () => {
   
@@ -13,43 +14,6 @@ const Statistics: React.FunctionComponent = () => {
   const { findTag } = useTags();
   const { month, totalPrice, } = getStatisticsData(type);
   const tagsAmount = getTagsTotalAmount(type);
-  
-  const [option, setOption] = useState({
-    title: {
-      text: 'test'
-    },
-    tooltip: {},
-    xAxis: {
-      data: [] as any
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        data: [] as any,
-        type: 'bar'
-      }
-    ]
-  });
-  const container = useRef<HTMLDivElement>(null);
-  const chart = useRef<any>(null);
-  useEffect(() => {
-    if (container && container.current &&  chart) {
-      
-      const width = document.documentElement.clientWidth;
-      container.current.style.width = `100%`;
-      container.current.style.height = `${(width - 20) * 1.2}px`;
-      
-      chart.current = echarts.init(container.current, 'dart')
-    }
-
-  }, []);
-
-  useEffect(() => {
-    chart.current.setOption(option);
-  }, [option]);
-  
   const totalAmount = useCallback(
     () => {
       let total = getTypeTotalAmount(type);
@@ -59,27 +23,24 @@ const Statistics: React.FunctionComponent = () => {
     },
     [type, getTypeTotalAmount],
   )
-
-  useEffect(() => {
-    setOption({
-      title: {
-        text: totalAmount()
-      },
-      tooltip: {},
-      xAxis: {
-        data: month
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-        {
-          data: totalPrice,
-          type: 'bar'
-        }
-      ]
-    })
-  }, totalPrice);
+  const option = {
+    title: {
+      text: totalAmount()
+    },
+    tooltip: {},
+    xAxis: {
+      data: month
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: totalPrice,
+        type: 'bar'
+      }
+    ]
+  }
   
   const onTagChange = (tag: string) => {
       if (tag !== type) {
@@ -95,9 +56,7 @@ const Statistics: React.FunctionComponent = () => {
             <button className={type === 'revenue' ? 'selected' : ''}  onClick={() => onTagChange('revenue')}>收入</button>
           </StaHeader>
 
-          
-          <div ref={container} />
-
+          <BarChart option={option}></BarChart>
           {
             tagsAmount && tagsAmount.length !== 0 && (
               <StaList>
